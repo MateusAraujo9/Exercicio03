@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="exercicio8">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 08</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio8", []);
+		angular.module("exercicio8").controller("exercicio8Ctrl", function($scope) {
+			$scope.mensagem = "8 - Verificar se tem chave";
+			$scope.cinto = ["espada", "bota", "capacete", "chave", "capa"];
+
+			$scope.porta = function(){
+				var verificacao = temChave();
+
+				if (verificacao){
+					$scope.portaOpen = "A porta abriu";
+				}else{
+					$scope.portaOpen = "A porta não abriu";
+				}
+			};
+
+			function temChave(){
+				var b = false;
+				for (var i = 0; i < $scope.cinto.length; i++) {
+					if ($scope.cinto[i] === "chave") {
+						b = true;
+						i += $scope.cinto.length;
+					}else{
+						b = false;
+					}	
+				}
+				return b;
+			};
+		});
+	</script>
+</head>
+<body ng-controller="exercicio8Ctrl">
+	<h3>Exercício {{mensagem}}</h3>
+	<button ng-click="porta()">Tem chave?</button>{{portaOpen}}
+</body>
+</html>

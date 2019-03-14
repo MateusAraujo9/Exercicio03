@@ -1,0 +1,32 @@
+    <!DOCTYPE html>
+    <html lang="pt-br" ng-app="myapp">
+      <head>
+        <title>Título da página</title>
+        <script src="angular.js"></script>
+        <script>
+            angular.module("myapp",[]);
+            angular.module("myapp").controller("myappCtrl", function($scope){
+                $scope.app = "funcionando";
+                $scope.somar = function(){
+                  var x = parseInt($scope.numero1) + parseInt($scope.numero2);
+                  if (x>=100) {
+                    $scope.soma = x;
+                  }else{
+                    alert("Soma menor que 100");
+                  }
+                  
+                };
+                
+            })
+        </script>
+        <meta charset="utf-8">
+      </head>
+      <body ng-controller="myappCtrl">
+        
+        Numero 1<input type="text" name="numero1" ng-model="numero1"><br>
+        Numero 2<input type="text" name="numero2" ng-model="numero2"><br>
+        <button ng-click="somar()">Somar</button>
+        
+        <p>Soma: {{soma}}</p>
+      </body>
+    </html>

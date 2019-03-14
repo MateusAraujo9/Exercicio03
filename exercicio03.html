@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="exercicio3">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 03</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio3", []);
+		angular.module("exercicio3").controller("exercicio3Ctrl", function($scope) {
+			$scope.mensagem = "3 - Ordem de vetor";
+			$scope.vetor = [];
+			$scope.adicionar = function(){
+				if ($scope.escolha !== null && $scope.escolha !== undefined) {
+					$scope.vetor[$scope.vetor.length] = $scope.escolha;
+				}
+				
+				for (var i = 0; i < $scope.vetor.length; i++) {
+					for (var j = 0; j < $scope.vetor.length; j++) {
+						if ($scope.vetor[j] > $scope.vetor[j+1]) {
+							var x = $scope.vetor[j];
+							$scope.vetor[j] = $scope.vetor[j+1];
+							$scope.vetor[j+1] = x;
+						}
+					}
+				}
+				
+			};
+		})
+	</script>
+</head>
+<body ng-controller="exercicio3Ctrl">
+	<h3>Exercicio {{mensagem}}</h3>
+	<label for="escolha">Escolha um número: <input type="number" name="escolha" ng-model="escolha" id="escolha"></label>
+	<button ng-click="adicionar()">Adicionar</button>
+	<p>Vetor: {{vetor}}</p>
+</body>
+</html>

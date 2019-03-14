@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="exercicio2">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 02</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio2", []);
+		angular.module("exercicio2").controller("exercicio2Ctrl", function($scope) {
+			$scope.mensagem = "2 - Tabuada";
+			$scope.tabuada = [];
+			$scope.criarTabuada = function(){
+			  	for (var i = 1; i <= 10; i++) {
+					$scope.tabuada[i-1] = {expressao: $scope.escolha+"x"+i, resultado: $scope.escolha*i}; 
+				}
+			}
+		});
+	</script>
+	<style type="text/css">
+		table tr td{
+			border: 1px solid #000000;
+		}
+	</style>
+</head>
+<body ng-controller="exercicio2Ctrl">
+	<h3>Exercicio {{mensagem}}</h3>
+	<label for="escolha">Qual tabuada você quer ver? <input type="text" name="escolha" ng-model="escolha" id="escolha"></label>
+	<button ng-click="criarTabuada()">Mostrar tabuada</button>
+	<table>
+		<tr>
+			<th>Expressão</th>
+			<th>Resultado</th>
+		</tr>
+		<tr ng-repeat="t in tabuada">
+			<td>{{t.expressao}}</td>
+			<td>{{t.resultado}}</td>
+		</tr>
+	</table>
+</body>
+</html>

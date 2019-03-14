@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="exercicio9">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 09</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio9", []);
+		angular.module("exercicio9").controller("exercicio9Ctrl", function($scope) {
+			
+			$scope.verificaPos = function(posicao){
+				if (posicao >= 0 && posicao <= 100) {
+					$scope.resultado = "Posição aceita";
+				}else{
+					$scope.resultado = "Posição recusada, redirecionar para: " + Math.floor((Math.random() * 100) + 0);
+				}
+			}
+		});
+	</script>
+</head> 
+<body ng-controller="exercicio9Ctrl">
+	<label for="posicao">Posição: <input type="text" name="posicao" ng-model="posicao" id="posicao"></label>
+	<button ng-click="verificaPos(posicao)">Verificar</button>
+	<p>Resultado: {{resultado}}</p>
+</body>
+</html>

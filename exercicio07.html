@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="exercicio7">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 07</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio7", []);
+		angular.module("exercicio7").controller("exercicio7Ctrl", function($scope) {
+			$scope.mensagem = "7 - Atacar Personagem";
+			$scope.atacar = function(){
+				$scope.vida = verificaSeMorreu($scope.saude, $scope.dano);
+				if ($scope.vida) {
+					$scope.status = "Personagem morto!"
+				}else{
+					$scope.status = "Personagem vivo!"
+				}
+			};
+
+			function verificaSeMorreu(saude, dano){
+				if (saude > dano) {
+					return false;
+				}else{
+					return true;
+				}
+			}
+		})
+	</script>
+</head>
+<body ng-controller="exercicio7Ctrl">
+	<h3>Exercício {{mensagem}}</h3>
+	<label for="saude">Saude:<input type="text" name="saude" ng-model="saude" id=saude></label><br>
+	<label for="dano">Dano:  <input type="text" name="dano" ng-model="dano" id=dano></label><br>
+	<button ng-click="atacar()">Atacar</button>
+	{{status}}
+</body>
+</html>

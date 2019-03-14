@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="exercicio6">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 06</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio6", []);
+		angular.module("exercicio6").controller("exercicio6Ctrl", function($scope) {
+				$scope.mensagem = "6 - Conversão de temperatura";
+				$scope.converte = function(){
+					var vlFahrenheit = parseFloat($scope.fahrenheit);
+					$scope.celsius = (((vlFahrenheit - 32)*5)/9);
+				};
+		})
+	</script>
+</head>
+<body ng-controller="exercicio6Ctrl">
+	<h3>Exercício {{mensagem}}</h3>
+	<label for="fahrenheit">
+		Graus Fahrenheit: 
+		<input type="text" ng-change="converte()" name="fahrenheit" ng-model="fahrenheit" id="celsius">
+	</label> 
+	= 
+	<label for="celsius">
+		Graus Celsius: 
+		<input type="text" name="celsius" value={{celsius}} id="celsius" >
+	</label>
+</body>
+</html>

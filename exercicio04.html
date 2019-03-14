@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="exercicio4">
+<head lang="pt-br">
+	<meta charset="utf-8">
+	<title>Exercicio - 04</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio4", []);
+		angular.module("exercicio4").controller("exercicio4Ctrl", function($scope) {
+			$scope.mensagem = "4 - Opções da cálculo";
+			$scope.funcoes = [{cod: "A", txt: "Soma de 2 números"},{cod: "B", txt: "Diferença entre 2 números"}, {cod: "C", txt: "Produto entre 2 números"}, {cod: "D", txt: "Divisão entre 2 números"}];
+
+			$scope.calcular = function(){
+				switch($scope.selecionado.cod){
+					case "A":
+						$scope.resultado = $scope.numero1 + $scope.numero2;
+						break;
+					case "B":
+						if ($scope.numero1 > $scope.numero2){
+							$scope.resultado = $scope.numero1 - $scope.numero2;
+						}else{
+							$scope.resultado = $scope.numero2 - $scope.numero1;
+						}
+						break;
+					case "C":
+						$scope.resultado = $scope.numero1 * $scope.numero2;
+						break;
+					case "D":
+						if ($scope.numero2 === 0){
+							alert("Denominador não pode ser 0");
+						}else{
+							$scope.resultado = $scope.numero1 / $scope.numero2;
+						}
+						break;
+					default:
+						console.log("NÃO FOI POSSIVEL LER OPÇÃO: "+$scope.selecionado.cod);
+				}
+			};
+		});
+	</script>
+</head>
+<body ng-controller="exercicio4Ctrl">
+	<h3>Exercício {{mensagem}}</h3>
+	<input type="number" name="numero1" ng-model="numero1"> 
+	<select name="selecionado" ng-model="selecionado" ng-options="x.txt for x in funcoes">
+		<option value=""><--Escolha uma operação--></option>
+	</select>
+	<input type="number" name="numero2" ng-model="numero2">
+	<button ng-click="calcular()">Calcular</button> = 
+	<input type="text" name="resultado" value="{{resultado}}">
+</body>
+</html>

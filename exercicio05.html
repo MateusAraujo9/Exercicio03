@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="exercicio5">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 05</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio5", []);
+		angular.module("exercicio5").controller("exercicio5Ctrl", function($scope) {
+			$scope.mensagem = "5 - Votação";
+			$scope.candidatos = [{numero: 1, nome: "José do Partido da Felicidade", qtdVotos: 0},{numero: 2, nome: "João, do Partido da Esperança", qtdVotos: 0}]
+
+			$scope.voto = function(voto){
+				if (voto === 1) {
+					$scope.candidato = $scope.candidatos[0];
+					//console.log($scope.candidato);
+					
+				}else{
+					$scope.candidato = $scope.candidatos[1];
+					//console.log($scope.candidato);
+				}
+			};
+
+			$scope.votar = function(voto){
+				var titulo = parseInt($scope.titulo);
+				if ($scope.titulo === null || $scope.titulo === NaN || $scope.titulo === undefined) {
+					alert("Informe o titulo");
+				}else if (titulo > 0) {
+					$scope.cand1 = "";
+					$scope.cand2 = "";
+					$scope.ganhador = "";
+
+					if (voto == 1) {
+						$scope.candidatos[0].qtdVotos += 1;
+						//console.log($scope.candidatos[0]);
+						$scope.titulo = null;
+						$scope.candidato = "";
+						alert("Voto confirmado");
+					}else if (voto == 2) {
+						$scope.candidatos[1].qtdVotos += 1;
+						//console.log($scope.candidatos[1]);
+						$scope.titulo = null;
+						$scope.candidato = "";
+						alert("Voto confirmado");
+					}else{
+						alert("Escolha um candidato");
+					}
+				}else{
+					apresentarResultado();
+				}
+			};
+
+			function apresentarResultado(){
+				$scope.cand1 = $scope.candidatos[0].nome+" recebeu "+$scope.candidatos[0].qtdVotos+" votos";
+				$scope.cand2 = $scope.candidatos[1].nome+" recebeu "+$scope.candidatos[1].qtdVotos+" votos";
+				if ($scope.candidatos[0].qtdVotos > $scope.candidatos[1].qtdVotos) {
+					$scope.ganhador = "Logo o candidato ganhador é o "+$scope.candidatos[0].nome+" com um total de "+$scope.candidatos[0].qtdVotos+" votos";
+				}else if($scope.candidatos[0].qtdVotos < $scope.candidatos[1].qtdVotos){
+					$scope.ganhador = "Logo o candidato ganhador é o "+$scope.candidatos[1].nome+" com um total de "+$scope.candidatos[1].qtdVotos+" votos";
+				}else{
+					$scope.ganhador = "Deu empate";
+				}
+				$scope.candidatos[0].qtdVotos = 0;
+				$scope.candidatos[1].qtdVotos = 0;
+			};
+		});
+	</script>
+</head>
+<body ng-controller="exercicio5Ctrl">
+	<h3>Exercício {{mensagem}}</h3>
+	<label for="titulo">Titulo de eleitor: <input type="text" name="titulo" ng-model="titulo" id="titulo"></label>
+	<h5>Escolha o numero do seu candidato</h5>
+	<button ng-click="voto(1)">1</button>
+	<button ng-click="voto(2)">2</button>
+	<span>Opção selecionada: {{candidato.numero+" "+candidato.nome}}</span><br>
+	<!--<button ng-click="votar(candidato.numero)">Confirma</button>-->
+	<button ng-click="votar(candidato.numero)">Confirma</button>
+	<br>
+	<p>{{cand1}}</p>
+	<p>{{cand2}}</p>
+	<p>{{ganhador}}</p>
+</body>
+</html>
