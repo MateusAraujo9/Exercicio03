@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Exercicio - 10</title>
 	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript">
 		angular.module("exercicio10", []);
 		angular.module("exercicio10").controller("exercicio10Ctrl", function($scope) {
@@ -14,17 +15,6 @@
 			$scope.pegar = function (numero, naipe) {
 				var cartaPega = new carta(numero, naipe);
 				cartaPega.exibir();
-			}
-
-			class carta{
-				constructor(numero, naipe){
-					this.numero = numero;
-					this.naipe = naipe;
-				}
-
-				exibir(){
-					alert("Carta escolhida: "+this.numero+" de "+this.naipe);
-				}
 			}
 		});
 	</script>

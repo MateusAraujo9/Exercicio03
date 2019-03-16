@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="exercicio11">
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 11</title>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript">
+		angular.module("exercicio11", []);	
+		angular.module("exercicio11").controller("exercicio11Ctrl", function ($scope) {
+			$scope.mensagem = "11 - Adivinha cartas";
+		})
+	</script>
+</head>
+<body ng-controller="exercicio11Ctrl">
+	<h3>Exercício {{mensagem}}</h3>
+</body>
+</html>
