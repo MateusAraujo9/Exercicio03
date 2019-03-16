@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html>
-<head ng-app="exercicio10">
+<html ng-app="exercicio10">
+<head>
 	<meta charset="utf-8">
 	<title>Exercicio - 10</title>
 	<script type="text/javascript" src="angular.js"></script>
 	<script type="text/javascript">
 		angular.module("exercicio10", []);
 		angular.module("exercicio10").controller("exercicio10Ctrl", function($scope) {
-			
+			$scope.mensagem = "10 - Escolhe carta";
+			$scope.cNumero = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+			$scope.cNaipe = ["Paus", "Copas", "Espadas", "Ouro"];
+
+			$scope.pegar = function (numero, naipe) {
+				var cartaPega = new carta(numero, naipe);
+				cartaPega.exibir();
+			}
+
+			class carta{
+				constructor(numero, naipe){
+					this.numero = numero;
+					this.naipe = naipe;
+				}
+
+				exibir(){
+					alert("Carta escolhida: "+this.numero+" de "+this.naipe);
+				}
+			}
 		});
 	</script>
 </head>
-<body ng-controller="exercicio10">
-	<h3>Mensagem </h3>
+<body ng-controller="exercicio10Ctrl">
+	<h3>Exercício {{mensagem}}</h3>
+	<select name="numero" ng-model="numero" ng-options="x for x in cNumero">
+		<option value=""><--Escolha a carta--></option>
+	</select>
+	<select name="naipe" ng-model="naipe" ng-options="y for y in cNaipe">
+		<option value=""><--Escolha o Naipe--></option>
+	</select>
+	<button ng-click="pegar(numero, naipe)">Pegar carta</button>
 </body>
 </html>
