@@ -7,4 +7,8 @@ class carta{
 	exibir(){
 		alert("Carta escolhida: "+this.numero+" de "+this.naipe);
 	}
+
+	getCarta(){
+		return (this.numero+" de "+this.naipe);
+	}
 };

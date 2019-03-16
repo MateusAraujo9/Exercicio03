@@ -9,10 +9,32 @@
 		angular.module("exercicio11", []);	
 		angular.module("exercicio11").controller("exercicio11Ctrl", function ($scope) {
 			$scope.mensagem = "11 - Adivinha cartas";
+			$scope.cNumero = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+			$scope.cNaipe = ["Paus", "Copas", "Espadas", "Ouro"];
+			$scope.adivinhar = function(){
+				var errou = true;
+
+				while(errou){
+					var nNumero = Math.floor((Math.random() * $scope.cNumero.length) + 0);
+					var nNaipe = Math.floor((Math.random()* $scope.cNaipe.length) + 0);
+
+					var x = new carta($scope.cNumero[nNumero], $scope.cNaipe[nNaipe]);
+					var resposta = prompt("Sua carta é "+x.getCarta()+"?\nS = Sim, N = Não");
+
+					if (resposta === "S" || resposta === "s") {
+						$scope.cartaEscolhida = "Sua carta é "+x.getCarta();
+						errou = false;
+					}
+				}
+			}
 		})
 	</script>
 </head>
 <body ng-controller="exercicio11Ctrl">
 	<h3>Exercício {{mensagem}}</h3>
+	<h5>Pense em uma carta!</h5>
+	<button ng-click="adivinhar()">Adivinhar</button>
+	<p>{{cartaEscolhida}}</p>
+
 </body>
 </html>
