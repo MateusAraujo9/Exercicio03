@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Exercicio - 12</title>
+	<script type="text/javascript">
+		function jokenpo() {
+			var ganhando = true;
+			var pontuacao = 0;
+			while(ganhando){
+				var opJogador = parseInt(prompt("1 - Papel\n2 - Pedra\n3 - Tesoura"));
+				//verifica opção invalida
+				if (opJogador !== 1 && opJogador !== 2 && opJogador !== 3){
+					alert("Opção inválida, perdeu");
+					ganhando = false;
+				}else{
+					var opComputador = Math.floor((Math.random()* 3) + 1);
+					alert("Escolha da máquina: "+opComputador+"\nobs: 1 - Papel, 2 - Pedra, 3 = Tesoura");
+
+					if (opJogador < opComputador){
+						if (opJogador === 1 && opComputador === 3){
+							ganhando = false;
+						}else{
+							pontuacao++;
+						}
+					}else if (opJogador > opComputador){
+						ganhando = false;
+					}else{
+						console.log("Empatou");
+					}
+				}
+			}
+
+			alert("Você perdeu. \nPontuacao final: "+pontuacao);
+		}
+	</script>
+</head>
+<body>
+	<script type="text/javascript">
+		jokenpo();
+	</script>
+</body>
+</html>
